@@ -11,13 +11,17 @@ pipeline {
             steps {
                 sh '''
                     export AWS_DEFAULT_REGION="ap-southeast-2"
-                    echo "Commencing build Branch: ${GIT_BRANCH} Build: ${BUILD_NUMBER}"
+                    export CFNSTACKNAME=`echo $BUILD_TAG | sed 's/jenkins-//g'`
+                    echo "Commencing build of Application: ${JOB_NAME} - Branch: ${GIT_BRANCH} - Build: ${BUILD_NUMBER}"
                     echo "AWS CLI Version : `aws --version`"
-                    find /var/jenkins_home/workspace/awsapplication_dev/
+                    echo "Cloudformation Stack Name: $CFNSTACKNAME"
 
-                    export
-
-                    
+                    if [ -f ./template.yaml ]; then
+                        echo "Template YAML file found for deployment"
+                    else
+                        echo "Template YAML NOT found for deployment"
+                        exit 1
+                    fi
                 '''
             }
         }
