@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('Validate Template') {
             agent {
-                docker { image 'amazon/aws-cli' }
+                docker {
+                    image 'amazon/aws-cli'
+                    args '-i --entrypoint='
+                    }
             }
             steps {
                 echo 'AWS CLI Version'
