@@ -9,9 +9,14 @@ pipeline {
                     }
             }
             steps {
-                echo 'AWS CLI Version'
-                echo '-------------------'
-                sh 'aws --version'
+                sh ...
+                    aws --version
+
+                    df -h
+
+                    find / -type f
+                ...
+                            
             }
         }
     }
