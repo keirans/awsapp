@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo 'AWS CLI Version'
                 echo '-------------------'
-                export
+                sh 'aws --version'
             }
         }
     }
