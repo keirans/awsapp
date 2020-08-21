@@ -14,7 +14,8 @@ pipeline {
 
                     df -h
 
-                    find / -type f
+                    echo Exports
+                    export
                 '''
                             
             }
