@@ -1,12 +1,14 @@
 pipeline {
     agent none
     stages {
-        stage('Back-end') {
+        stage('Validate Template') {
             agent {
                 docker { image 'amazon/aws-cli' }
             }
             steps {
-                'aws --version'
+                echo 'AWS CLI Version'
+                echo '-------------------'
+                aws --version
             }
         }
     }
