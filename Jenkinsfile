@@ -1,20 +1,12 @@
 pipeline {
-    agent any
-
+    agent none
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
+        stage('Back-end') {
+            agent {
+                docker { image 'amazon/aws-cli' }
             }
-        }
-        stage('Test') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                'aws --version'
             }
         }
     }
