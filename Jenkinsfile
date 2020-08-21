@@ -10,14 +10,10 @@ pipeline {
             }
             steps {
                 sh '''
-                    aws --version
-
-                    df -h
-
-                    echo Exports
-                    export
+                    echo "Commencing build Branch: ${GIT_BRANCH} Build: ${BUILD_NUMBER}"
+                    echo "AWS CLI Version : `aws --version`"
+                    find /var/jenkins_home/workspace/awsapplication_dev/
                 '''
-                            
             }
         }
     }
