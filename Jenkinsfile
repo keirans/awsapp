@@ -14,7 +14,10 @@ pipeline {
                     echo "Commencing build Branch: ${GIT_BRANCH} Build: ${BUILD_NUMBER}"
                     echo "AWS CLI Version : `aws --version`"
                     find /var/jenkins_home/workspace/awsapplication_dev/
-                    aws cloudformation validate-template --template-body file://template.yaml
+
+                    export
+
+                    
                 '''
             }
         }
