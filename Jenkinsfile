@@ -9,13 +9,13 @@ pipeline {
                     }
             }
             steps {
-                sh ...
+                sh '''
                     aws --version
 
                     df -h
 
                     find / -type f
-                ...
+                '''
                             
             }
         }
