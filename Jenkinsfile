@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        Environment = 'nonp'
+        ENVIRONMENT = 'nonp'
     }
     stages {
         stage('Validate Template') {
