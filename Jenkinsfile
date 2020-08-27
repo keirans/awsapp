@@ -20,7 +20,10 @@ pipeline {
             }
         }
         stage('Delete Stack') {
-            input("Ready to proceed?")
+            input { 
+                message "Should we tear down the deployment ?"
+                ok "Yes, We should"
+            }
             steps {
                 withAWS(region:'ap-southeast-2',credentials:'AWSDemoCredentials') {
                     cfnDelete(stack:"app-${ENVIRONMENT}-${GIT_BRANCH}-${BUILD_ID}" , pollInterval:1000)
