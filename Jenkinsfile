@@ -15,7 +15,15 @@ pipeline {
         stage('Create Stack') {
             steps {
                 withAWS(region:'ap-southeast-2',credentials:'AWSDemoCredentials') {
-                    cfnUpdate(file: 'template.yaml', stack:"app-${ENVIRONMENT}-${GIT_BRANCH}-${BUILD_ID}" , pollInterval:1000)
+                    cfnVUpdate(file: 'template.yaml', stack:"app-${ENVIRONMENT}-${GIT_BRANCH}-${BUILD_ID}" , pollInterval:1000)
+                }
+            }
+        }
+        stage('Delete Stack') {
+            input("Ready to proceed?")
+            steps {
+                withAWS(region:'ap-southeast-2',credentials:'AWSDemoCredentials') {
+                    cfnDelete(stack:"app-${ENVIRONMENT}-${GIT_BRANCH}-${BUILD_ID}" , pollInterval:1000)
                 }
             }
         }
